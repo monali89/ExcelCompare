@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lunalite.css') }}">
+
+    <body>
+
+        <div class="container title">
+            <head>
+                <title>Excel Comparison</title>
+                <h1 style="font-style: bold">{{ heading }}</h1>
+            </head>
+        </div>
+
+        <div class="container" style="align-items: center">
+
+            <form method="post" action="/upload" enctype='multipart/form-data'>
+               <div class="input-group" align="center" style="align-content: center">
+                    File 1:<input type='file' accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name='file1'>
+                    File 2:<input type='file' accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name='file2'>
+                    <br>
+                    <input type="submit" value="Compare">
+                    <br><br>
+                    <p>{{ file_names }}</p>   
+                </div>
+
+                <div class="module-tabs">
+                   
+                </div>
+
+                <div>
+                    <h2>Table Data</h2>
+                    <table border="0.5" bgcolor="#f0f8ff" align="center" name="compared_sheet" onscroll="this"> 
+                     {% for key, table in tables.items() %}
+                         {% for index, row in table.iterrows() %}
+                                <tr>
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                                </tr>
+                            {% endfor %}
+                     {% endfor %}   
+                </div>
+
+               
+        <br><br>
+
+        </form>
+        </div>
+
+
+        <form method="post" action="/generate">
+            <input type="submit" value="Generate output file">
+            <p>File saved in {{ folder_loc }}</p>
+        </form>
+
+        <footer id="footer">
+          <div class="container">
+            <div id="copyright">
+              For issues contact:
+              <a href="mailto:lakhotem@advisory.com">
+                Monali Lakhote
+              </a>
+            </div>
+          </div>
+        </footer>
+
+    </body>
+</html>

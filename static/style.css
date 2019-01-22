@@ -1,0 +1,14 @@
+h1{
+    color: deeppink
+}
+form {
+    color: black;
+}
+p{
+    color: darkcyan;
+}
+#compared_sheet {
+    border: 1px;
+    border-color: aliceblue;
+    align-items: center;
+}

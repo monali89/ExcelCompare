@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <head>
+        <title>"Excel Comparison"</title>
+        <h1>{{ heading }}</h1>
+    </head>
+    <body>
+        <!--
+        <form method='get' action='#' enctype='multipart/form-data'>
+            File 1: <input type='file' name='file1'>
+            <br>
+            <br>
+            File 2: <input type='file' name='file2'>
+            <br>
+            <br>
+        </form>
+        -->
+        <form method="post" action="/upload" enctype='multipart/form-data'>
+            File 1: <input type='file' name='file1'>
+            <br><br>
+            File 2: <input type='file' name='file2'>
+            <br><br>
+            <input type="submit" value="Compare">
+            <br><br>
+            <p>{{ file_names }}</p>
+            <br>
+            
+            <table>
+                {% for table in tables %}
+                    <h2>Table Data</h2>
+                    {% for columns in table %}
+                        {% if '->' in table[columns] %}
+                        <tr style="background-color: coral">
+                        {% elif '+' in table[columns] %}
+                        <tr style="background-color: aquamarine">
+                        {% endif %}
+                        <td title={{ columns }}>{{ table[columns] }}</td>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+            
+         <br><br>
+            <input type="button" value="Generate output file">
+            <br><br>
+        </form>
+    </body>
+</html>

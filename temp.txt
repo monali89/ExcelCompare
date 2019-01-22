@@ -1,0 +1,5 @@
+ <!--{% if '->' in cell %}
+                            <td bgcolor="#ff8c00">{{ cell }}</td>
+                            {% elif '+' in cell %}
+                            <td bgcolor="#00ced1">{{ cell }}</td>
+                            {% endif %}-->
